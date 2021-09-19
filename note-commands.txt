@@ -1,0 +1,8 @@
+docker build -t raniel12345/weatherapi .
+docker run -p 8080:80 raniel12345/weatherapi
+docker ps
+docker stop <containerID>
+
+docker push raniel12345/weatherapi
+// don't forget to login
+docker login
