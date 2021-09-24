@@ -107,3 +107,9 @@ In order to persist terraform state files, use
 --- Create resource group and storage account
 --- on storage account, create container or folder
 tfstate
+
+
+
+Terraform Apply is "Idempotent"
+- When performing the same operation again gives the same results...
+- if we don't specify a build version, (default to "Latest")
