@@ -43,6 +43,7 @@ stages:
         set -e
         terraform init -input=false
         terraform apply -input=false -auto-approve
+      workingDirectory: Ioc/
       name: 'RunTerraform'
       displayName: 'Run Terraform'
       env:
