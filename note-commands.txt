@@ -77,3 +77,33 @@ in DevOps
 - Create Service connection
     - Docker registry
     - Azure Resource Manager
+
+------------------------
+To use Service Principal
+- in DevOps -> Pipelines -> Library -> Add variable group
+    - Enter all environment variables
+
+
+------------------------
+
+Terraform Files
+- Main.tf
+    Holds Terraform configuration code (Terraform Plan)
+
+- Terraform.tfvars
+- Terraform.tfstate
+    - JSON file managed by Terraform
+    - Used to map plan resources to running resources
+    - Need to persist when it comes to a CI/CD Pipeline
+
+
+------------------------
+In order to persist terraform state files, use 
+- Resource group - tf_rg_blobstore
+- storage account - newtfstorageaccount
+- containerID
+- file (main.tf)
+
+--- Create resource group and storage account
+--- on storage account, create container or folder
+tfstate
