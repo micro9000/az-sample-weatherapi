@@ -6,3 +6,74 @@ docker stop <containerID>
 docker push raniel12345/weatherapi
 // don't forget to login
 docker login
+
+
+-------------------------------------
+
+Download terraform executable file and add it on environment variable
+Download Azure CLI
+
+
+-------------------------------------
+
+az login
+az account list-locations
+
+
+
+-------------------------------------
+
+terraform init
+terraform plan
+terraform apply
+
+
+-------------------------------------
+
+Service Principal Environment Variables (Highly sensitive data)
+Setting up these variables will let terraform to not use current logged-in user on az
+
+- ARM_CLIENT_ID
+- ARM_CLIENT_SECRET
+- ARM_TENANT_ID
+- ARM_SUBSCRIPTION_ID
+
+steps: 
+- https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs
+- https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/guides/service_principal_client_secret
+    1. Creating an Application in Azure Active Directory
+    2. Generating a Client Secret for the Azure Active Directory Application
+    3. Granting the Application access to manage resources in your Azure Subscription
+    etc.
+
+My steps:
+1. Create new tenant AD, since my org. have an existing tenant
+2. Register new Apps called: TerraformServicePrincipalForCICD
+3. Go to Visual studio Subscription and change the directory to created tenant
+4. Copy the ARM_CLIENT_ID and ARM_TENANT_ID
+5. Click Certificates & secrets and Create new Client secrets, copy the value
+6. Copy the Subscription id to ARM_SUBSCRIPTION_ID
+7. click Subscription name
+8. Click Access control (IAM), click Add -> Add role assignment
+9. 
+
+
+ARM_CLIENT_ID 		xxxx...
+ARM_TENANT_ID 		xxxx...
+ARM_CLIENT_SECRET	xxxx...
+ARM_SUBSCRIPTION_ID	xxxx...
+
+setx ARM_CLIENT_ID xxxx...
+setx ARM_CLIENT_SECRET "xxxx..."
+setx ARM_SUBSCRIPTION_ID xxxx...
+setx ARM_TENANT_ID xxxx...
+
+az login --service-principal -u xxxx... -p "xxxx..." --tenant xxxx...
+
+
+------------------------
+
+in DevOps
+- Create Service connection
+    - Docker registry
+    - Azure Resource Manager
