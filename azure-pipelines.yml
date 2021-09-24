@@ -41,9 +41,7 @@ stages:
     steps:
     - script: |
         set -e
-        echo  '$(System.DefaultWorkingDirectory)'
-        dir
-        dir IoC
+        cd IoC
         terraform init -input=false
         terraform apply -input=false -auto-approve
       name: 'RunTerraform'
